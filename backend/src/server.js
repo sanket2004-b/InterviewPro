@@ -5,8 +5,10 @@ import express from 'express';
 import path from 'path';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import { serve } from "inngest/express";
 import { ENV } from "./lib/env.js";
 import { connectDB } from "./lib/db.js";
+import { clerkMiddleware, requireAuth } from '@clerk/express';
 
 
 const app=express();
@@ -14,8 +16,17 @@ const app=express();
 
 
 const __dirname=path.resolve();
+
+app.use(cors({origin:ENV.CLIENT_URL,credentials:true}));
 app.use(express.static(path.join(__dirname,'../frontend/dist')));
-app.get('/test',(req,res)=>{
+// console.log(process.env.CLERK_SECRET_KEY);
+app.use(
+    clerkMiddleware({
+    secretKey: process.env.CLERK_SECRET_KEY,
+    publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
+  })
+);
+app.get('/test',requireAuth(),(req,res)=>{
     res.send('Hello World');
 })
 // app.get('/',(req,res)=>{
