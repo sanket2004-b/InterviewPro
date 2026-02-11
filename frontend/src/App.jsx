@@ -1,22 +1,22 @@
 import "./index.css";
 
+import {useUser} from "@clerk/clerk-react";
+import { Navigate, Route, Routes } from "react-router";
+import HomePage from "./pages/HomePage";
 
-import { SignIn, SignOutButton, SignedIn, SignedOut } from '@clerk/clerk-react'
 function App() {
  
+  const {isSignedIn,isLoaded}=useUser();
+
+  if(!isLoaded){
+    return null;
+  }
 
   return (
     <>
-      <h1 className='text-red-500'>Hello From clerk authentication</h1>
-      <SignedOut>
-        <button>Login</button>
-        <SignIn />
-      </SignedOut>
-
-      <SignedIn>
-        <h1>Welcome 🎉</h1>
-        <SignOutButton />
-      </SignedIn>
+    <Routes>
+       <Route path="/" element={!isSignedIn ? <HomePage /> : <Navigate to={"/"} />} />
+    </Routes>
     </>
     
   )
