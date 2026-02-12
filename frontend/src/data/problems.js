@@ -63,13 +63,26 @@ class Solution {
         System.out.println(Arrays.toString(twoSum(new int[]{2, 7, 11, 15}, 9))); // Expected: [0, 1]
         System.out.println(Arrays.toString(twoSum(new int[]{3, 2, 4}, 6))); // Expected: [1, 2]
         System.out.println(Arrays.toString(twoSum(new int[]{3, 3}, 6))); // Expected: [0, 1]
+    }`,
+    cpp: 
+    `#include <iostream>
+     #include <vector>
+     using namespace std;  
+     int main() {
+    // Write your solution here
+      return 0;
     }
-}`,
+      expected: [0, 1]
+      cout << twoSum({2, 7, 11, 15}, 9) << endl; // Expected: [0, 1]
+      cout << twoSum({3, 2, 4}, 6) << endl; // Expected: [1, 2]
+      cout << twoSum({3, 3}, 6) << endl; // Expected: [0, 1]
+`,
     },
     expectedOutput: {
       javascript: "[0,1]\n[1,2]\n[0,1]",
       python: "[0, 1]\n[1, 2]\n[0, 1]",
       java: "[0, 1]\n[1, 2]\n[0, 1]",
+      cpp: "[0, 1]\n[1, 2]\n[0, 1]",
     },
   },
 
@@ -337,6 +350,7 @@ print(maxArea([1,1]))  # Expected: 1`,
       javascript: "49\n1",
       python: "49\n1",
       java: "49\n1",
+      cpp: "49\n1",
     },
   },
 };
@@ -357,4 +371,9 @@ export const LANGUAGE_CONFIG = {
     icon: "/java.png",
     monacoLang: "java",
   },
+  cpp:{
+    name:"C++",
+    icon:"/cpp.png",
+    monacoLang:"cpp"
+  }
 };
