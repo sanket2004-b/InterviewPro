@@ -2124,38 +2124,6 @@ class Solution {
 },
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 };
 
 export const LANGUAGE_CONFIG = {
