@@ -73,30 +73,30 @@ function ProblemPage() {
       .join("\n");
     };
 
-    const checkIfTestsPassed=(output)=>{
-        const normalizedOutput=normalizeOutput(output);
-        const expectedOutput=normalizeOutput(currentProblem.expectedOutput); 
-        return normalizedOutput===expectedOutput;
-    };
-    
+    const checkIfTestsPassed = (actualOutput, expectedOutput) => {
+    const normalizedActual = normalizeOutput(actualOutput);
+    const normalizedExpected = normalizeOutput(expectedOutput);
+
+    return normalizedActual == normalizedExpected;
+  };
     const handleRunCode=async()=>{
         setIsRunning(true);
         setOutput(null);
-        const result=await executeCode(selectedLanguage,code,currentProblem.testCases);
+        const result=await executeCode(selectedLanguage,code);
         setOutput(result);
         setIsRunning(false);
         if(result.success){
-            const expectedOutput=currentProblem.expectedOutput;
+            const expectedOutput=currentProblem.expectedOutput[selectedLanguage];
             const testsPassed=checkIfTestsPassed(result.output,expectedOutput);
             if(testsPassed){
                 triggerConfetti();
-                toast.success("All tests passed!");
+                toast.success("Congradulations! All tests passed!");
             }else {
-                toast.error("tests failed. Expected output!");   
+                toast.error("tests failed. Try again!");   
 
             }
         }else{
-            toast.error("Error executing code. Please check your code and try again."); 
+            toast.error("Error executing code"); 
         }
     }
 
