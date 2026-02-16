@@ -35,7 +35,7 @@ app.get('/test',requireAuth(),(req,res)=>{
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use("/api/chat", chatRoutes);
-console.log("Registering /api/sessions routes");
+// console.log("Registering /api/sessions routes");
 app.use("/api/sessions", sessionRoutes);
 // app.get('/',(req,res)=>{
 //     res.sendFile(path.join(__dirname,'../frontend/dist/index.html'));
@@ -49,7 +49,7 @@ const startServer = async () => {
     await connectDB();
     app.listen(ENV.PORT, () => console.log("Server is running on port:", ENV.PORT));
   } catch (error) {
-    console.error("💥 Error starting the server", error);
+    console.error(" Error starting the server", error);
   }
 };
 

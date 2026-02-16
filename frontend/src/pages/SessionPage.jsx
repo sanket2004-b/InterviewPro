@@ -15,94 +15,87 @@ import useStreamClient from "../hooks/useStreamClient";
 import { StreamCall, StreamVideo } from "@stream-io/video-react-sdk";
 import VideoCallUI from "../components/VideoCallUI";
 
-function SessionPage(){
-    const navigate=useNavigate();
-    const {id}=useParams();
-    const {user}=useUser();
+function SessionPage() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { user } = useUser();
+  const [output, setOutput] = useState(null);
+  const [isRunning, setIsRunning] = useState(false);
 
-    const [output,setOutput]=useState(null);
-    const [isRunning,setIsRunning]=useState(false);
+  const { data: sessionData, isLoading: loadingSession, refetch } = useSessionById(id);
 
+  const joinSessionMutation = useJoinSession();
+  const endSessionMutation = useEndSession();
 
-    const{data:sessionData,isLoading:loadingSession,refetch}=useSessionById(id);
+  const session = sessionData?.session;
+  const isHost = session?.host?.clerkId === user?.id;
+  const isParticipant = session?.participant?.clerkId === user?.id;
 
-    const joinSessionMutaion=useJoinSession();
-    const endSessionMutaion=useEndSession();
-
-    const session=sessionData?.session;
-    const isHost=session?.host?.clerkId===user?.id;
-    const isParticipant = session?.participant?.clerkId === user?.id;
-
-    const { call, channel, chatClient, isInitializingCall, streamClient } = useStreamClient(
+  const { call, channel, chatClient, isInitializingCall, streamClient } = useStreamClient(
     session,
     loadingSession,
     isHost,
     isParticipant
   );
 
-    const problemData=session
-    ? Object.values(PROBLEMS).find((p)=>p.title===session.problem)
+  // find the problem data based on session problem title
+  const problemData = session?.problem
+    ? Object.values(PROBLEMS).find((p) => p.title === session.problem)
     : null;
-    
-    const [selectedLanguage,setSelectedLanguage]= useState("javascript");
-    const[code,setCode]=useState(problemData?.starterCode?.[selectedLanguage] || "");
-    
-useEffect(() => {
-  if (!loadingSession && session) {
-    const problemData = Object.values(PROBLEMS).find(p => p.title === session.problem);
-    console.log("Session:", session);
-    console.log("Problem Data:", problemData);
-    console.log("Constraints:", problemData?.constraints);
-  }
-}, [loadingSession, session]);
 
+  const [selectedLanguage, setSelectedLanguage] = useState("javascript");
+  const [code, setCode] = useState(problemData?.starterCode?.[selectedLanguage] || "");
 
-    useEffect(()=>{
-        if(!session || !user || loadingSession) return ;
-        if(isHost || isParticipant) return ;
+  // auto-join session if user is not already a participant and not the host
+  useEffect(() => {
+    if (!session || !user || loadingSession) return;
+    if (isHost || isParticipant) return;
 
-        joinSessionMutaion.mutate(id,{onSuccess:refetch});
-    },[session,user,loadingSession,isHost,isParticipant,id]);
+    joinSessionMutation.mutate(id, { onSuccess: refetch });
 
-    useEffect(()=>{
-        if(!session || loadingSession) return ;
+    // remove the joinSessionMutation, refetch from dependencies to avoid infinite loop
+  }, [session, user, loadingSession, isHost, isParticipant, id]);
 
-        if(session.status==="completed") navigate("/dashboard");
+  // redirect the "participant" when session ends
+  useEffect(() => {
+    if (!session || loadingSession) return;
 
-    },[session,loadingSession,navigate]);
+    if (session.status === "completed") navigate("/dashboard");
+  }, [session, loadingSession, navigate]);
 
-    useEffect(()=>{
-        if(problemData?.starterCode?.[selectedLanguage]){
-            setCode(problemData.starterCode[selectedLanguage]);
-        }
-    },[problemData,selectedLanguage]);
-
-    const handleLanguageChange=(e)=>{
-        const newLang=e.target.value;
-
-        setSelectedLanguage(newLang);
-
-        const starterCode=problemData?.starterCode?.[newLang] || "";
-
-        setCode(starterCode);
-        setOutput(null);
+  // update code when problem loads or changes
+  useEffect(() => {
+    if (problemData?.starterCode?.[selectedLanguage]) {
+      setCode(problemData.starterCode[selectedLanguage]);
     }
+  }, [problemData, selectedLanguage]);
 
-    const handleRunCode=async ()=>{
-        setIsRunning(true);
-        setOutput(null);
+  const handleLanguageChange = (e) => {
+    const newLang = e.target.value;
+    setSelectedLanguage(newLang);
+    // use problem-specific starter code
+    const starterCode = problemData?.starterCode?.[newLang] || "";
+    setCode(starterCode);
+    setOutput(null);
+  };
 
-        const result=await executeCode(selectedLanguage,code);
-        setOutput(result);
-        setIsRunning(false);
+  const handleRunCode = async () => {
+    setIsRunning(true);
+    setOutput(null);
+
+    const result = await executeCode(selectedLanguage, code);
+    setOutput(result);
+    setIsRunning(false);
+  };
+
+  const handleEndSession = () => {
+    if (confirm("Are you sure you want to end this session? All participants will be notified.")) {
+      // this will navigate the HOST to dashboard
+      endSessionMutation.mutate(id, { onSuccess: () => navigate("/dashboard") });
     }
+  };
 
-    const handleEndSession=()=>{
-        if(confirm("Are you sure you want to end this session? All participants will be notified")){
-            endSessionMutaion.mutate(id,{onSuccess:()=>navigate("/dashboard")});
-        }
-    }
-    return (
+  return (
     <div className="h-screen bg-base-100 flex flex-col">
       <Navbar />
 
@@ -139,14 +132,13 @@ useEffect(() => {
                           {session?.difficulty.slice(0, 1).toUpperCase() +
                             session?.difficulty.slice(1) || "Easy"}
                         </span>
-                        
                         {isHost && session?.status === "active" && (
                           <button
                             onClick={handleEndSession}
-                            disabled={endSessionMutaion.isPending}
+                            disabled={endSessionMutation.isPending}
                             className="btn btn-error btn-sm gap-2"
                           >
-                            {endSessionMutaion.isPending ? (
+                            {endSessionMutation.isPending ? (
                               <Loader2Icon className="w-4 h-4 animate-spin" />
                             ) : (
                               <LogOutIcon className="w-4 h-4" />
@@ -218,7 +210,6 @@ useEffect(() => {
                     )}
 
                     {/* Constraints */}
-                    
                     {problemData?.constraints && problemData.constraints.length > 0 && (
                       <div className="bg-base-100 rounded-xl shadow-sm p-5 border border-base-300">
                         <h2 className="text-xl font-bold mb-4 text-base-content">Constraints</h2>

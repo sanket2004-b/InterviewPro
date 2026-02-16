@@ -1,6 +1,9 @@
 import { chatClient, streamClient } from "../lib/stream.js";
 import Session from "../models/Session.js";
 
+
+// console.log("i am in sessionController.js");
+//   console.log(Session.problem);
 export async function createSession(req, res) {
   try {
     const { problem, difficulty } = req.body;
@@ -11,13 +14,12 @@ export async function createSession(req, res) {
       return res.status(400).json({ message: "Problem and difficulty are required" });
     }
 
-    
+   
     const callId = `session_${Date.now()}_${Math.random().toString(36).substring(7)}`;
 
-    
     const session = await Session.create({ problem, difficulty, host: userId, callId });
 
-   
+  
     await streamClient.video.call("default", callId).getOrCreate({
       data: {
         created_by_id: clerkId,
@@ -25,7 +27,7 @@ export async function createSession(req, res) {
       },
     });
 
-   
+    
     const channel = chatClient.channel("messaging", callId, {
       name: `${problem} Session`,
       created_by_id: clerkId,
@@ -60,7 +62,7 @@ export async function getMyRecentSessions(req, res) {
   try {
     const userId = req.user._id;
 
-
+    // get sessions 
     const sessions = await Session.find({
       status: "completed",
       $or: [{ host: userId }, { participant: userId }],
@@ -110,7 +112,7 @@ export async function joinSession(req, res) {
       return res.status(400).json({ message: "Host cannot join their own session as participant" });
     }
 
-    
+    // check if session is already full - has a participant max 2 parcipants (host + 1 participant)
     if (session.participant) return res.status(409).json({ message: "Session is full" });
 
     session.participant = userId;
@@ -135,20 +137,21 @@ export async function endSession(req, res) {
 
     if (!session) return res.status(404).json({ message: "Session not found" });
 
-   
+    // check if user is the host
     if (session.host.toString() !== userId.toString()) {
       return res.status(403).json({ message: "Only the host can end the session" });
     }
 
+    // check if session is already completed
     if (session.status === "completed") {
       return res.status(400).json({ message: "Session is already completed" });
     }
 
-    
+    // delete stream video call
     const call = streamClient.video.call("default", session.callId);
     await call.delete({ hard: true });
 
-    
+    // delete stream chat channel
     const channel = chatClient.channel("messaging", session.callId);
     await channel.delete();
 
@@ -160,4 +163,5 @@ export async function endSession(req, res) {
     console.log("Error in endSession controller:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
+  
 }

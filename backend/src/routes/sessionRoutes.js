@@ -8,7 +8,7 @@ import {
   getSessionById,
   joinSession,
 } from "../controllers/sessionController.js";
-console.log("i amm in sessionRoutes.js");
+// console.log("i amm in sessionRoutes.js");
 const router = express.Router();
 
 router.post("/", protectRoute, createSession);
