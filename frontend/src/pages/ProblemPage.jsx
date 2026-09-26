@@ -79,26 +79,40 @@ function ProblemPage() {
 
     return normalizedActual == normalizedExpected;
   };
-    const handleRunCode=async()=>{
-        setIsRunning(true);
-        setOutput(null);
-        const result=await executeCode(selectedLanguage,code);
-        setOutput(result);
-        setIsRunning(false);
-        if(result.success){
-            const expectedOutput=currentProblem.expectedOutput[selectedLanguage];
-            const testsPassed=checkIfTestsPassed(result.output,expectedOutput);
-            if(testsPassed){
-                triggerConfetti();
-                toast.success("Congradulations! All tests passed!");
-            }else {
-                toast.error("tests failed. Try again!");   
+const handleRunCode = async () => {
+  setIsRunning(true);
+  setOutput(null);
 
-            }
-        }else{
-            toast.error("Error executing code"); 
-        }
+  console.log("Language:", selectedLanguage);
+  console.log("Code:", code);
+
+  const result = await executeCode(selectedLanguage, code);
+
+  console.log("Execution result:", result);
+
+  setOutput(result);
+  setIsRunning(false);
+
+  if (result.success) {
+    const expectedOutput =
+      currentProblem.expectedOutput[selectedLanguage];
+
+    const testsPassed = checkIfTestsPassed(
+      result.output,
+      expectedOutput
+    );
+
+    if (testsPassed) {
+      triggerConfetti();
+      toast.success("Congratulations! All tests passed!");
+    } else {
+      toast.error("Tests failed. Try again!");
     }
+  } else {
+    console.error("EXECUTION ERROR:", result.error);
+    toast.error(result.error || "Error executing code");
+  }
+};
 
 return(
     <div className="h-screen bg-base-100 flex flex-col">
