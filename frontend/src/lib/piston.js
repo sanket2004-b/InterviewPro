@@ -1,4 +1,5 @@
-const BACKEND_URL = "http://localhost:3003/api";
+// const BACKEND_URL = "http://localhost:3003/api";  //for local development
+const BACKEND_URL = "/api";
 
 export async function executeCode(language, code) {
   try {
