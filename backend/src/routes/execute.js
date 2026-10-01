@@ -34,19 +34,25 @@ router.post("/", (req, res) => {
 
     else if (language === "python") {
       filePath = path.join(tempDir, "main.py");
-
       fs.writeFileSync(filePath, code, "utf8");
 
-      command = `python "${filePath}"`;
-    }
+      const pythonCommand =
+        os.platform() === "win32" ? "python" : "python3";
+
+      command = `${pythonCommand} "${filePath}"`;
+  }
 
     else if (language === "cpp") {
-      filePath = path.join(tempDir, "main.cpp");
-      const exePath = path.join(tempDir, "main.exe");
+    filePath = path.join(tempDir, "main.cpp");
 
-      fs.writeFileSync(filePath, code, "utf8");
+    const exePath =
+      os.platform() === "win32"
+        ? path.join(tempDir, "main.exe")
+        : path.join(tempDir, "main");
 
-      command = `g++ -std=c++17 "${filePath}" -o "${exePath}" && "${exePath}"`;
+    fs.writeFileSync(filePath, code, "utf8");
+
+    command = `g++ -std=c++17 "${filePath}" -o "${exePath}" && "${exePath}"`;
     }
 
     else {
