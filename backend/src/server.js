@@ -9,21 +9,26 @@ import { ENV } from "./lib/env.js";
 import { connectDB } from "./lib/db.js";
 import { clerkMiddleware, requireAuth } from '@clerk/express';
 import { inngest, functions } from "./lib/inngest.js";
-
+import executeRoute from "./routes/execute.js";
 import chatRoutes from "./routes/chatRoutes.js";
 import sessionRoutes from "./routes/sessionRoutes.js";
 
 const app=express();
+// app.use("/api/execute", executeRoute);
 
 
 
 const __dirname=path.resolve();
-app.use(express.json());
 app.use(cors({
     origin: ENV.CLIENT_URL,
-    
     credentials: true,
 }));
+
+app.use(express.json());
+
+app.use("/api/execute", executeRoute);
+
+app.use(clerkMiddleware());
 
 // console.log(process.env.CLERK_SECRET_KEY);
 app.use(

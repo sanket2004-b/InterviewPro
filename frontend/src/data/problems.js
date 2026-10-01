@@ -50,25 +50,35 @@ console.log(twoSum([3, 3], 6)); // Expected: [0, 1]`,
 print(twoSum([2, 7, 11, 15], 9))  # Expected: [0, 1]
 print(twoSum([3, 2, 4], 6))  # Expected: [1, 2]
 print(twoSum([3, 3], 6))  # Expected: [0, 1]`,
-      java: `import java.util.*;
+      cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-    public static int[] twoSum(int[] nums, int target) {
-        // Write your solution here
-        
-        return new int[0];
-    }
+vector<int> twoSum(vector<int> nums, int target) {
+    // Write your solution here
     
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(twoSum(new int[]{2, 7, 11, 15}, 9))); // Expected: [0, 1]
-        System.out.println(Arrays.toString(twoSum(new int[]{3, 2, 4}, 6))); // Expected: [1, 2]
-        System.out.println(Arrays.toString(twoSum(new int[]{3, 3}, 6))); // Expected: [0, 1]
-    }`,
+    return {};
+}
+
+void printVector(const vector<int>& v) {
+    cout << "[";
+    for (size_t i = 0; i < v.size(); i++) {
+        if (i > 0) cout << ", ";
+        cout << v[i];
+    }
+    cout << "]" << endl;
+}
+
+int main() {
+    printVector(twoSum({2, 7, 11, 15}, 9)); // Expected: [0, 1]
+    printVector(twoSum({3, 2, 4}, 6)); // Expected: [1, 2]
+    printVector(twoSum({3, 3}, 6)); // Expected: [0, 1]
+    return 0;
+}`,
     },
     expectedOutput: {
       javascript: "[0,1]\n[1,2]\n[0,1]",
       python: "[0, 1]\n[1, 2]\n[0, 1]",
-      java: "[0, 1]\n[1, 2]\n[0, 1]",
+      cpp: "[0, 1]\n[1, 2]\n[0, 1]",
     },
   },
 
@@ -118,29 +128,38 @@ print(test1)  # Expected: ["o","l","l","e","h"]
 test2 = ["H","a","n","n","a","h"]
 reverseString(test2)
 print(test2)  # Expected: ["h","a","n","n","a","H"]`,
-      java: `import java.util.*;
+      cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-    public static void reverseString(char[] s) {
-        // Write your solution here
-        
-    }
+void reverseString(vector<char>& s) {
+    // Write your solution here
     
-    public static void main(String[] args) {
-        char[] test1 = {'h','e','l','l','o'};
-        reverseString(test1);
-        System.out.println(Arrays.toString(test1)); // Expected: [o, l, l, e, h]
-        
-        char[] test2 = {'H','a','n','n','a','h'};
-        reverseString(test2);
-        System.out.println(Arrays.toString(test2)); // Expected: [h, a, n, n, a, H]
+}
+
+void printVector(const vector<char>& v) {
+    cout << "[";
+    for (size_t i = 0; i < v.size(); i++) {
+        if (i > 0) cout << ", ";
+        cout << v[i];
     }
+    cout << "]" << endl;
+}
+
+int main() {
+    vector<char> test1 = {'h','e','l','l','o'};
+    reverseString(test1);
+    printVector(test1); // Expected: [o, l, l, e, h]
+    
+    vector<char> test2 = {'H','a','n','n','a','h'};
+    reverseString(test2);
+    printVector(test2); // Expected: [h, a, n, n, a, H]
+    return 0;
 }`,
     },
     expectedOutput: {
       javascript: '["o","l","l","e","h"]\n["h","a","n","n","a","H"]',
       python: "['o', 'l', 'l', 'e', 'h']\n['h', 'a', 'n', 'n', 'a', 'H']",
-      java: "[o, l, l, e, h]\n[h, a, n, n, a, H]",
+      cpp: "[o, l, l, e, h]\n[h, a, n, n, a, H]",
     },
   },
 
@@ -190,24 +209,27 @@ console.log(isPalindrome(" ")); // Expected: true`,
 print(isPalindrome("A man, a plan, a canal: Panama"))  # Expected: True
 print(isPalindrome("race a car"))  # Expected: False
 print(isPalindrome(" "))  # Expected: True`,
-      java: `class Solution {
-    public static boolean isPalindrome(String s) {
-        // Write your solution here
-        
-        return false;
-    }
+      cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+bool isPalindrome(string s) {
+    // Write your solution here
     
-    public static void main(String[] args) {
-        System.out.println(isPalindrome("A man, a plan, a canal: Panama")); // Expected: true
-        System.out.println(isPalindrome("race a car")); // Expected: false
-        System.out.println(isPalindrome(" ")); // Expected: true
-    }
+    return false;
+}
+
+int main() {
+    cout << boolalpha;
+    cout << isPalindrome("A man, a plan, a canal: Panama") << endl; // Expected: true
+    cout << isPalindrome("race a car") << endl; // Expected: false
+    cout << isPalindrome(" ") << endl; // Expected: true
+    return 0;
 }`,
     },
     expectedOutput: {
       javascript: "true\nfalse\ntrue",
       python: "True\nFalse\nTrue",
-      java: "true\nfalse\ntrue",
+      cpp: "true\nfalse\ntrue",
     },
   },
 
@@ -256,24 +278,26 @@ console.log(maxSubArray([5,4,-1,7,8])); // Expected: 23`,
 print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))  # Expected: 6
 print(maxSubArray([1]))  # Expected: 1
 print(maxSubArray([5,4,-1,7,8]))  # Expected: 23`,
-      java: `class Solution {
-    public static int maxSubArray(int[] nums) {
-        // Write your solution here
-        
-        return 0;
-    }
+      cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int maxSubArray(vector<int> nums) {
+    // Write your solution here
     
-    public static void main(String[] args) {
-        System.out.println(maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4})); // Expected: 6
-        System.out.println(maxSubArray(new int[]{1})); // Expected: 1
-        System.out.println(maxSubArray(new int[]{5,4,-1,7,8})); // Expected: 23
-    }
+    return 0;
+}
+
+int main() {
+    cout << maxSubArray({-2,1,-3,4,-1,2,1,-5,4}) << endl; // Expected: 6
+    cout << maxSubArray({1}) << endl; // Expected: 1
+    cout << maxSubArray({5,4,-1,7,8}) << endl; // Expected: 23
+    return 0;
 }`,
     },
     expectedOutput: {
       javascript: "6\n1\n23",
       python: "6\n1\n23",
-      java: "6\n1\n23",
+      cpp: "6\n1\n23",
     },
   },
 
@@ -319,23 +343,24 @@ console.log(maxArea([1,1])); // Expected: 1`,
 # Test cases
 print(maxArea([1,8,6,2,5,4,8,3,7]))  # Expected: 49
 print(maxArea([1,1]))  # Expected: 1`,
-      java: `class Solution {
-    public static int maxArea(int[] height) {
-        // Write your solution here
-        
-        return 0;
-    }
+      cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int maxArea(vector<int> height) {
+    // Write your solution here
     
-    public static void main(String[] args) {
-        System.out.println(maxArea(new int[]{1,8,6,2,5,4,8,3,7})); // Expected: 49
-        System.out.println(maxArea(new int[]{1,1})); // Expected: 1
-    }
+    return 0;
+}
+
+int main() {
+    cout << maxArea({1,8,6,2,5,4,8,3,7}) << endl; // Expected: 49
+    cout << maxArea({1,1}) << endl; // Expected: 1
+    return 0;
 }`,
     },
     expectedOutput: {
       javascript: "49\n1",
       python: "49\n1",
-      java: "49\n1",
       cpp: "49\n1",
     },
   },
@@ -364,17 +389,28 @@ console.log(threeSum([-1,0,1,2,-1,-4]));`,
 
 print(threeSum([-1,0,1,2,-1,-4]))`,
 
-    java: `import java.util.*;
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-    public static List<List<Integer>> threeSum(int[] nums) {
-        // Write your solution here
-        return new ArrayList<>();
-    }
+vector<vector<int>> threeSum(vector<int> nums) {
+    // Write your solution here
+    return {};
+}
 
-    public static void main(String[] args) {
-        System.out.println(threeSum(new int[]{-1,0,1,2,-1,-4}));
+int main() {
+    vector<vector<int>> result = threeSum({-1,0,1,2,-1,-4});
+    cout << "[";
+    for (size_t i = 0; i < result.size(); i++) {
+        if (i > 0) cout << ", ";
+        cout << "[";
+        for (size_t j = 0; j < result[i].size(); j++) {
+            if (j > 0) cout << ", ";
+            cout << result[i][j];
+        }
+        cout << "]";
     }
+    cout << "]" << endl;
+    return 0;
 }`
   },
 },
@@ -403,15 +439,17 @@ console.log(lengthOfLongestSubstring("abcabcbb"));`,
 
 print(lengthOfLongestSubstring("abcabcbb"))`,
 
-    java: `class Solution {
-    public static int lengthOfLongestSubstring(String s) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-    public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring("abcabcbb"));
-    }
+int lengthOfLongestSubstring(string s) {
+    // Write your solution here
+    return 0;
+}
+
+int main() {
+    cout << lengthOfLongestSubstring("abcabcbb") << endl;
+    return 0;
 }`
   },
 },
@@ -441,17 +479,23 @@ console.log(productExceptSelf([1,2,3,4]));`,
 
 print(productExceptSelf([1,2,3,4]))`,
 
-    java: `import java.util.*;
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-    public static int[] productExceptSelf(int[] nums) {
-        // Write your solution here
-        return new int[nums.length];
-    }
+vector<int> productExceptSelf(vector<int> nums) {
+    // Write your solution here
+    return vector<int>(nums.size());
+}
 
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(productExceptSelf(new int[]{1,2,3,4})));
+int main() {
+    vector<int> result = productExceptSelf({1,2,3,4});
+    cout << "[";
+    for (size_t i = 0; i < result.size(); i++) {
+        if (i > 0) cout << ", ";
+        cout << result[i];
     }
+    cout << "]" << endl;
+    return 0;
 }`
   },
 },
@@ -480,15 +524,17 @@ console.log(isValid("()[]{}"));`,
 
 print(isValid("()[]{}"))`,
 
-    java: `class Solution {
-    public static boolean isValid(String s) {
-        // Write your solution here
-        return false;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-    public static void main(String[] args) {
-        System.out.println(isValid("()[]{}"));
-    }
+bool isValid(string s) {
+    // Write your solution here
+    return false;
+}
+
+int main() {
+    cout << boolalpha << isValid("()[]{}") << endl;
+    return 0;
 }`
   },
 },
@@ -518,15 +564,17 @@ console.log(search([4,5,6,7,0,1,2], 0));`,
 
 print(search([4,5,6,7,0,1,2], 0))`,
 
-    java: `class Solution {
-    public static int search(int[] nums, int target) {
-        // Write your solution here
-        return -1;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-    public static void main(String[] args) {
-        System.out.println(search(new int[]{4,5,6,7,0,1,2}, 0));
-    }
+int search(vector<int> nums, int target) {
+    // Write your solution here
+    return -1;
+}
+
+int main() {
+    cout << search({4,5,6,7,0,1,2}, 0) << endl;
+    return 0;
 }`
   },
 },
@@ -555,18 +603,29 @@ console.log(merge([[1,3],[2,6],[8,10],[15,18]]));`,
 
 print(merge([[1,3],[2,6],[8,10],[15,18]]))`,
 
-    java: `import java.util.*;
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-    public static int[][] merge(int[][] intervals) {
-        // Write your solution here
-        return new int[0][0];
-    }
+vector<vector<int>> merge(vector<vector<int>> intervals) {
+    // Write your solution here
+    return {};
+}
 
-    public static void main(String[] args) {
-        int[][] intervals = {{1,3},{2,6},{8,10},{15,18}};
-        System.out.println(Arrays.deepToString(merge(intervals)));
+int main() {
+    vector<vector<int>> intervals = {{1,3},{2,6},{8,10},{15,18}};
+    vector<vector<int>> result = merge(intervals);
+    cout << "[";
+    for (size_t i = 0; i < result.size(); i++) {
+        if (i > 0) cout << ", ";
+        cout << "[";
+        for (size_t j = 0; j < result[i].size(); j++) {
+            if (j > 0) cout << ", ";
+            cout << result[i][j];
+        }
+        cout << "]";
     }
+    cout << "]" << endl;
+    return 0;
 }`
   },
 },
@@ -596,15 +655,17 @@ console.log(trap([0,1,0,2,1,0,1,3,2,1,2,1]));`,
 
 print(trap([0,1,0,2,1,0,1,3,2,1,2,1]))`,
 
-    java: `class Solution {
-    public static int trap(int[] height) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-    public static void main(String[] args) {
-        System.out.println(trap(new int[]{0,1,0,2,1,0,1,3,2,1,2,1}));
-    }
+int trap(vector<int> height) {
+    // Write your solution here
+    return 0;
+}
+
+int main() {
+    cout << trap({0,1,0,2,1,0,1,3,2,1,2,1}) << endl;
+    return 0;
 }`
   },
 },
@@ -633,15 +694,17 @@ console.log(findKthLargest([3,2,1,5,6,4], 2));`,
 
 print(findKthLargest([3,2,1,5,6,4], 2))`,
 
-    java: `class Solution {
-    public static int findKthLargest(int[] nums, int k) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-    public static void main(String[] args) {
-        System.out.println(findKthLargest(new int[]{3,2,1,5,6,4}, 2));
-    }
+int findKthLargest(vector<int> nums, int k) {
+    // Write your solution here
+    return 0;
+}
+
+int main() {
+    cout << findKthLargest({3,2,1,5,6,4}, 2) << endl;
+    return 0;
 }`
   },
 },
@@ -670,17 +733,28 @@ console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]));`,
 
 print(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))`,
 
-    java: `import java.util.*;
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-    public static List<List<String>> groupAnagrams(String[] strs) {
-        // Write your solution here
-        return new ArrayList<>();
-    }
+vector<vector<string>> groupAnagrams(vector<string> strs) {
+    // Write your solution here
+    return {};
+}
 
-    public static void main(String[] args) {
-        System.out.println(groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat"}));
+int main() {
+    vector<vector<string>> result = groupAnagrams({"eat","tea","tan","ate","nat","bat"});
+    cout << "[";
+    for (size_t i = 0; i < result.size(); i++) {
+        if (i > 0) cout << ", ";
+        cout << "[";
+        for (size_t j = 0; j < result[i].size(); j++) {
+            if (j > 0) cout << ", ";
+            cout << result[i][j];
+        }
+        cout << "]";
     }
+    cout << "]" << endl;
+    return 0;
 }`
   },
 },
@@ -709,15 +783,17 @@ console.log(coinChange([1,2,5], 11));`,
 
 print(coinChange([1,2,5], 11))`,
 
-    java: `class Solution {
-    public static int coinChange(int[] coins, int amount) {
-        // Write your solution here
-        return -1;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-    public static void main(String[] args) {
-        System.out.println(coinChange(new int[]{1,2,5}, 11));
-    }
+int coinChange(vector<int> coins, int amount) {
+    // Write your solution here
+    return -1;
+}
+
+int main() {
+    cout << coinChange({1,2,5}, 11) << endl;
+    return 0;
 }`
   },
 },
@@ -747,17 +823,17 @@ console.log(wordBreak("leetcode", ["leet","code"]));`,
 
 print(wordBreak("leetcode", ["leet","code"]))`,
 
-    java: `import java.util.*;
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-    public static boolean wordBreak(String s, List<String> wordDict) {
-        // Write your solution here
-        return false;
-    }
+bool wordBreak(string s, vector<string> wordDict) {
+    // Write your solution here
+    return false;
+}
 
-    public static void main(String[] args) {
-        System.out.println(wordBreak("leetcode", Arrays.asList("leet","code")));
-    }
+int main() {
+    cout << boolalpha << wordBreak("leetcode", {"leet","code"}) << endl;
+    return 0;
 }`
   },
 },
@@ -790,17 +866,17 @@ console.log(subarraySum([1,1,1], 2));`,
 
 print(subarraySum([1,1,1], 2))`,
 
-    java: `import java.util.*;
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-    public static int subarraySum(int[] nums, int k) {
-        // Write your solution here
-        return 0;
-    }
+int subarraySum(vector<int> nums, int k) {
+    // Write your solution here
+    return 0;
+}
 
-    public static void main(String[] args) {
-        System.out.println(subarraySum(new int[]{1,1,1}, 2));
-    }
+int main() {
+    cout << subarraySum({1,1,1}, 2) << endl;
+    return 0;
 }`
   },
 },
@@ -833,17 +909,18 @@ console.log(hasCycle(null));`,
 
 print(hasCycle(None))`,
 
-    java: `class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) { val = x; }
-}
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-    public static boolean hasCycle(ListNode head) {
-        // Write your solution here
-        return false;
-    }
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x) : val(x), next(nullptr) {}
+};
+
+bool hasCycle(ListNode* head) {
+    // Write your solution here
+    return false;
 }`
   },
 },
@@ -878,26 +955,26 @@ console.log(cloneGraph(null));`,
 
 print(cloneGraph(None))`,
 
-    java: `import java.util.*;
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
 class Node {
-    public int val;
-    public List<Node> neighbors;
-    public Node() {
+public:
+    int val;
+    vector<Node*> neighbors;
+    Node() {
         val = 0;
-        neighbors = new ArrayList<>();
+        neighbors = vector<Node*>();
     }
-    public Node(int _val) {
+    Node(int _val) {
         val = _val;
-        neighbors = new ArrayList<>();
+        neighbors = vector<Node*>();
     }
-}
+};
 
-class Solution {
-    public static Node cloneGraph(Node node) {
-        // Write your solution here
-        return null;
-    }
+Node* cloneGraph(Node* node) {
+    // Write your solution here
+    return nullptr;
 }`
   },
 },
@@ -932,11 +1009,12 @@ console.log(numIslands([['1','1','0'],['1','0','0'],['0','0','1']]));`,
 
 print(numIslands([['1','1','0'],['1','0','0'],['0','0','1']]))`,
 
-    java: `class Solution {
-    public static int numIslands(char[][] grid) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int numIslands(vector<vector<char>>& grid) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -968,19 +1046,19 @@ console.log(levelOrder(null));`,
 
 print(levelOrder(None))`,
 
-    java: `import java.util.*;
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class TreeNode {
+struct TreeNode {
     int val;
-    TreeNode left, right;
-    TreeNode(int x) { val = x; }
-}
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
 
-class Solution {
-    public static List<List<Integer>> levelOrder(TreeNode root) {
-        // Write your solution here
-        return new ArrayList<>();
-    }
+vector<vector<int>> levelOrder(TreeNode* root) {
+    // Write your solution here
+    return {};
 }`
   },
 },
@@ -1012,11 +1090,12 @@ console.log(lengthOfLIS([10,9,2,5,3,7,101,18]));`,
 
 print(lengthOfLIS([10,9,2,5,3,7,101,18]))`,
 
-    java: `class Solution {
-    public static int lengthOfLIS(int[] nums) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int lengthOfLIS(vector<int> nums) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -1050,11 +1129,12 @@ console.log(isValidSudoku([]));`,
 
 print(isValidSudoku([]))`,
 
-    java: `class Solution {
-    public static boolean isValidSudoku(char[][] board) {
-        // Write your solution here
-        return true;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+bool isValidSudoku(vector<vector<char>>& board) {
+    // Write your solution here
+    return true;
 }`
   },
 },
@@ -1085,11 +1165,12 @@ console.log(climbStairs(3));`,
 
 print(climbStairs(3))`,
 
-    java: `class Solution {
-    public static int climbStairs(int n) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int climbStairs(int n) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -1120,13 +1201,12 @@ console.log(generateParenthesis(3));`,
 
 print(generateParenthesis(3))`,
 
-    java: `import java.util.*;
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-    public static List<String> generateParenthesis(int n) {
-        // Write your solution here
-        return new ArrayList<>();
-    }
+vector<string> generateParenthesis(int n) {
+    // Write your solution here
+    return {};
 }`
   },
 },
@@ -1158,11 +1238,12 @@ console.log(maxProfit([7,1,5,3,6,4]));`,
 
 print(maxProfit([7,1,5,3,6,4]))`,
 
-    java: `class Solution {
-    public static int maxProfit(int[] prices) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int maxProfit(vector<int> prices) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -1196,11 +1277,12 @@ console.log(minPathSum([[1,3,1],[1,5,1],[4,2,1]]));`,
 
 print(minPathSum([[1,3,1],[1,5,1],[4,2,1]]))`,
 
-    java: `class Solution {
-    public static int minPathSum(int[][] grid) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int minPathSum(vector<vector<int>>& grid) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -1233,11 +1315,12 @@ console.log(numDecodings("226"));`,
 
 print(numDecodings("226"))`,
 
-    java: `class Solution {
-    public static int numDecodings(String s) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int numDecodings(string s) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -1271,11 +1354,12 @@ console.log(floodFill([[1,1,1],[1,1,0],[1,0,1]],1,1,2));`,
 
 print(floodFill([[1,1,1],[1,1,0],[1,0,1]],1,1,2))`,
 
-    java: `class Solution {
-    public static int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
-        // Write your solution here
-        return image;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+    // Write your solution here
+    return image;
 }`
   },
 },
@@ -1308,11 +1392,12 @@ console.log(canCompleteCircuit([1,2,3,4,5],[3,4,5,1,2]));`,
 
 print(canCompleteCircuit([1,2,3,4,5],[3,4,5,1,2]))`,
 
-    java: `class Solution {
-    public static int canCompleteCircuit(int[] gas, int[] cost) {
-        // Write your solution here
-        return -1;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+    // Write your solution here
+    return -1;
 }`
   },
 },
@@ -1347,13 +1432,12 @@ console.log(permute([1,2,3]));`,
 
 print(permute([1,2,3]))`,
 
-    java: `import java.util.*;
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-    public static List<List<Integer>> permute(int[] nums) {
-        // Write your solution here
-        return new ArrayList<>();
-    }
+vector<vector<int>> permute(vector<int>& nums) {
+    // Write your solution here
+    return {};
 }`
   },
 },
@@ -1409,24 +1493,27 @@ class Solution {
     def startsWith(self, prefix):
         pass`,
 
-    java: `class Trie {
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-    public Trie() {
+class Trie {
+public:
+    Trie() {
         // Initialize data structure
     }
 
-    public void insert(String word) {
+    void insert(string word) {
         // Write your solution here
     }
 
-    public boolean search(String word) {
+    bool search(string word) {
         return false;
     }
 
-    public boolean startsWith(String prefix) {
+    bool startsWith(string prefix) {
         return false;
     }
-}`
+};`
   },
 },
 "house-robber": {
@@ -1457,11 +1544,12 @@ console.log(rob([2,7,9,3,1]));`,
 
 print(rob([2,7,9,3,1]))`,
 
-    java: `class Solution {
-    public static int rob(int[] nums) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int rob(vector<int>& nums) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -1494,13 +1582,12 @@ console.log(findAnagrams("cbaebabacd", "abc"));`,
 
 print(findAnagrams("cbaebabacd", "abc"))`,
 
-    java: `import java.util.*;
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-    public static List<Integer> findAnagrams(String s, String p) {
-        // Write your solution here
-        return new ArrayList<>();
-    }
+vector<int> findAnagrams(string s, string p) {
+    // Write your solution here
+    return {};
 }`
   },
 },
@@ -1533,11 +1620,12 @@ console.log(singleNumber([4,1,2,1,2]));`,
 
 print(singleNumber([4,1,2,1,2]))`,
 
-    java: `class Solution {
-    public static int singleNumber(int[] nums) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int singleNumber(vector<int>& nums) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -1570,11 +1658,12 @@ console.log(canFinish(2, [[1,0]]));`,
 
 print(canFinish(2, [[1,0]]))`,
 
-    java: `class Solution {
-    public static boolean canFinish(int numCourses, int[][] prerequisites) {
-        // Write your solution here
-        return true;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+    // Write your solution here
+    return true;
 }`
   },
 },
@@ -1607,11 +1696,12 @@ console.log(majorityElement([3,2,3]));`,
 
 print(majorityElement([3,2,3]))`,
 
-    java: `class Solution {
-    public static int majorityElement(int[] nums) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int majorityElement(vector<int>& nums) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -1645,11 +1735,12 @@ console.log(findMedianSortedArrays([1,3],[2]));`,
 
 print(findMedianSortedArrays([1,3],[2]))`,
 
-    java: `class Solution {
-    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        // Write your solution here
-        return 0.0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    // Write your solution here
+    return 0.0;
 }`
   },
 },
@@ -1679,12 +1770,22 @@ print(findMedianSortedArrays([1,3],[2]))`,
     # Write your solution here
     pass`,
 
-    java: `class Solution {
-    public ListNode mergeKLists(ListNode[] lists) {
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x) : val(x), next(nullptr) {}
+};
+
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
         // Write your solution here
-        return null;
+        return nullptr;
     }
-}`
+};`
   },
 },
 
@@ -1713,12 +1814,16 @@ print(findMedianSortedArrays([1,3],[2]))`,
     # Write your solution here
     pass`,
 
-    java: `class Solution {
-    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
         // Write your solution here
         return 0;
     }
-}`
+};`
   },
 },
 
@@ -1745,12 +1850,16 @@ print(findMedianSortedArrays([1,3],[2]))`,
     # Write your solution here
     pass`,
 
-    java: `class Solution {
-    public List<List<String>> solveNQueens(int n) {
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    vector<vector<string>> solveNQueens(int n) {
         // Write your solution here
-        return new ArrayList<>();
+        return {};
     }
-}`
+};`
   },
 },
 
@@ -1784,11 +1893,12 @@ console.log(isMatch("aa", "a*"));`,
 
 print(isMatch("aa", "a*"))`,
 
-    java: `class Solution {
-    public static boolean isMatch(String s, String p) {
-        // Write your solution here
-        return false;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+bool isMatch(string s, string p) {
+    // Write your solution here
+    return false;
 }`
   },
 },
@@ -1827,18 +1937,28 @@ var deserialize = function(data) {
         # Write your solution here
         pass`,
 
-    java: `public class Codec {
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
-    public String serialize(TreeNode root) {
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+class Codec {
+public:
+    string serialize(TreeNode* root) {
         // Write your solution here
         return "";
     }
 
-    public TreeNode deserialize(String data) {
+    TreeNode* deserialize(string data) {
         // Write your solution here
-        return null;
+        return nullptr;
     }
-}`
+};`
   },
 },
 
@@ -1870,11 +1990,12 @@ console.log(largestRectangleArea([2,1,5,6,2,3]));`,
 
 print(largestRectangleArea([2,1,5,6,2,3]))`,
 
-    java: `class Solution {
-    public static int largestRectangleArea(int[] heights) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int largestRectangleArea(vector<int>& heights) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -1906,11 +2027,12 @@ console.log(minWindow("ADOBECODEBANC","ABC"));`,
 
 print(minWindow("ADOBECODEBANC","ABC"))`,
 
-    java: `class Solution {
-    public static String minWindow(String s, String t) {
-        // Write your solution here
-        return "";
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+string minWindow(string s, string t) {
+    // Write your solution here
+    return "";
 }`
   },
 },
@@ -1943,11 +2065,12 @@ console.log(minDistance("horse","ros"));`,
 
 print(minDistance("horse","ros"))`,
 
-    java: `class Solution {
-    public static int minDistance(String word1, String word2) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int minDistance(string word1, string word2) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -1977,14 +2100,16 @@ print(minDistance("horse","ros"))`,
     # Write your solution here
     pass`,
 
-    java: `import java.util.*;
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
 
 class Solution {
-    public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
+public:
+    vector<vector<int>> criticalConnections(int n, vector<vector<int>>& connections) {
         // Write your solution here
-        return new ArrayList<>();
+        return {};
     }
-}`
+};`
   },
 },
 
@@ -2014,11 +2139,12 @@ class Solution {
     # Write your solution here
     pass`,
 
-    java: `class Solution {
-    public static int countComponents(int n, int[][] edges) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int countComponents(int n, vector<vector<int>>& edges) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -2046,11 +2172,12 @@ class Solution {
     # Write your solution here
     pass`,
 
-    java: `class Solution {
-    public static int maxCoins(int[] nums) {
-        // Write your solution here
-        return 0;
-    }
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+int maxCoins(vector<int>& nums) {
+    // Write your solution here
+    return 0;
 }`
   },
 },
@@ -2080,12 +2207,23 @@ class Solution {
     # Write your solution here
     pass`,
 
-    java: `class Solution {
-    public boolean isValidBST(TreeNode root) {
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
         // Write your solution here
         return false;
     }
-}`
+};`
   },
 },
 "kth-smallest-bst": {
@@ -2114,12 +2252,23 @@ class Solution {
     # Write your solution here
     pass`,
 
-    java: `class Solution {
-    public int kthSmallest(TreeNode root, int k) {
+    cpp: `#include <bits/stdc++.h>
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
         // Write your solution here
         return 0;
     }
-}`
+};`
   },
 },
 
@@ -2137,9 +2286,9 @@ export const LANGUAGE_CONFIG = {
     icon: "/python.png",
     monacoLang: "python",
   },
-  java: {
-    name: "Java",
-    icon: "/java.png",
-    monacoLang: "java",
+  cpp: {
+    name: "C++",
+    icon: "/cpp.png",
+    monacoLang: "cpp",
   },
 };

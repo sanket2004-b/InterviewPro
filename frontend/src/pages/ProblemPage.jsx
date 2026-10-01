@@ -88,7 +88,7 @@ const handleRunCode = async () => {
 
   const result = await executeCode(selectedLanguage, code);
 
-  console.log("Execution result:", result);
+ console.log("Execution result:", JSON.stringify(result, null, 2));
 
   setOutput(result);
   setIsRunning(false);
